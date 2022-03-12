@@ -1,5 +1,5 @@
 const mysql = require ("mysql2");
-const {promisify} = require("util");
+const {promisify} = require("util");//esto permite convertir modulos de callbacks a modulos de promesas
 const {databae, database} = require ("./keys");
 
 const pool = mysql.createPool(database);
@@ -17,11 +17,11 @@ pool.getConnection((err, connection) => {
     }
     
      if (connection) connection.release();
-    console.log("BD id connected");
+    console.log("BD is connected");
     return;
 
 });
-
+//promesas pool query
     pool.query = promisify(pool.query);
 
     module.exports = pool;
